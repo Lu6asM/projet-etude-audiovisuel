@@ -18,10 +18,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
 import streamlit as st
-from streamlit_extras.bottom_container import bottom
 from streamlit_extras.chart_container import chart_container
 from streamlit_extras.metric_cards import style_metric_cards
-from streamlit_extras.row import row
 
 ROOT = Path(__file__).resolve().parent.parent
 SILVER = ROOT / "data" / "silver"
@@ -246,9 +244,9 @@ if page == "home":
 
     st.subheader("Trois trouvailles majeures", divider="violet")
 
-    trouvailles = row(3, gap="medium", vertical_align="top")
+    trouvailles = st.columns(3, gap="medium")
 
-    trouvailles.markdown(
+    trouvailles[0].markdown(
         """
         <div style="border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem;background:white;height:100%;">
           <div style="font-size:2.8rem;font-weight:800;color:#ef4444;line-height:1;">−0,60</div>
@@ -260,7 +258,7 @@ if page == "home":
         unsafe_allow_html=True,
     )
 
-    trouvailles.markdown(
+    trouvailles[1].markdown(
         """
         <div style="border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem;background:white;height:100%;">
           <div style="font-size:2.8rem;font-weight:800;color:#10b981;line-height:1;">+0,58</div>
@@ -272,7 +270,7 @@ if page == "home":
         unsafe_allow_html=True,
     )
 
-    trouvailles.markdown(
+    trouvailles[2].markdown(
         """
         <div style="border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem;background:white;height:100%;">
           <div style="font-size:2.8rem;font-weight:800;color:#6366f1;line-height:1;">3</div>
@@ -342,7 +340,7 @@ elif page == "agenda":
                           labels={"nb_sujets": "Sujets JT", "annee": ""})
             fig.update_layout(title="Sujets JT par chaîne", hovermode="x unified")
             fig.update_traces(hovertemplate="%{y:,.0f} sujets<extra>%{fullData.name}</extra>")
-            st.plotly_chart(style_fig(fig, 440), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 440), width="stretch")
 
         explain(
             "Chaque ligne représente une chaîne de télévision. La hauteur indique "
@@ -399,7 +397,7 @@ elif page == "agenda":
                         if year_min <= y <= year_max:
                             fig.add_vline(x=y, line_dash="dot", line_color=MUTED, opacity=0.3)
 
-                st.plotly_chart(style_fig(fig, 480), use_container_width=True)
+                st.plotly_chart(style_fig(fig, 480), width="stretch")
 
             explain(
                 "Chaque couleur représente un grand thème (politique, santé, sport...). "
@@ -426,7 +424,7 @@ elif page == "agenda":
             fig.update_layout(title="Heatmap mensuelle de saisonnalité",
                               coloraxis_colorbar=dict(thickness=12, len=0.7))
             fig.update_traces(hovertemplate="%{y}<br>%{x}<br>Indice : %{z:.2f}<extra></extra>")
-            st.plotly_chart(style_fig(fig, 620), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 620), width="stretch")
 
         explain(
             "Chaque case = un thème (en lignes) un mois donné (en colonnes). "
@@ -460,7 +458,7 @@ elif page == "agenda":
                              labels={"delta_pct": "Variation %", "evenement": ""})
                 fig.update_layout(title=f"Variations > {seuil}% sur la couverture médiatique")
                 fig.update_traces(hovertemplate="%{y}<br>%{x:+.0f}%<extra>%{fullData.name}</extra>")
-                st.plotly_chart(style_fig(fig, max(420, 22 * len(ev_sig))), use_container_width=True)
+                st.plotly_chart(style_fig(fig, max(420, 22 * len(ev_sig))), width="stretch")
 
             explain(
                 "Chaque barre = un événement historique. La longueur indique <b>de combien le sujet "
@@ -474,7 +472,7 @@ elif page == "agenda":
                     ev.sort_values("delta_pct", ascending=False)[
                         ["evenement", "date_debut", "rubrique", "duree_moy_avant", "duree_moy_pendant", "delta_pct"]
                     ],
-                    hide_index=True, use_container_width=True,
+                    hide_index=True, width="stretch",
                 )
 
 
@@ -514,7 +512,7 @@ elif page == "parite":
                 fig.update_layout(title="TV vs Radio : moyenne tous médias confondus",
                                   hovermode="x unified")
                 fig.update_traces(hovertemplate="%{y:.1f} %<extra>%{fullData.name}</extra>")
-                st.plotly_chart(style_fig(fig, 460), use_container_width=True)
+                st.plotly_chart(style_fig(fig, 460), width="stretch")
 
             last = avg_both[avg_both["year"] == avg_both["year"].max()]
             if len(last) == 2:
@@ -562,7 +560,7 @@ elif page == "parite":
                                       annotation_text="Parité 50 %", annotation_position="right")
                         fig.update_layout(title=f"Évolution {label_media}", hovermode="x unified")
                         fig.update_traces(hovertemplate="%{y:.1f} %<extra>%{fullData.name}</extra>")
-                        st.plotly_chart(style_fig(fig, 460), use_container_width=True)
+                        st.plotly_chart(style_fig(fig, 460), width="stretch")
                     explain(
                         "Chaque ligne représente une chaîne ou une station. "
                         "L'axe vertical montre <b>le pourcentage du temps de parole occupé par des femmes</b>. "
@@ -596,7 +594,7 @@ elif page == "parite":
                 fig.update_layout(title=f"Classement {label_media} en {year_sel}",
                                   coloraxis_showscale=False)
                 fig.update_traces(hovertemplate="%{y}<br>%{x:.1f} %<extra></extra>")
-                st.plotly_chart(style_fig(fig, max(420, 28 * len(snap))), use_container_width=True)
+                st.plotly_chart(style_fig(fig, max(420, 28 * len(snap))), width="stretch")
             explain(
                 "Classement de tous les médias par leur taux de parole féminine pour l'année choisie. "
                 "Les barres <b>vertes</b> dépassent 50 % (parité atteinte ou dépassée), "
@@ -613,7 +611,7 @@ elif page == "parite":
             fig2.update_yaxes(autorange="reversed")
             fig2.update_layout(title=f"Évolution du rang : {name}")
             fig2.update_traces(hovertemplate="%{x} : rang %{y}<extra></extra>")
-            st.plotly_chart(style_fig(fig2, 360), use_container_width=True)
+            st.plotly_chart(style_fig(fig2, 360), width="stretch")
 
     # ─── Prime time
     with t_prime:
@@ -637,7 +635,7 @@ elif page == "parite":
                 fig.update_layout(title=f"Prime time vs hors prime time {label_media}",
                                   hovermode="x unified")
                 fig.update_traces(hovertemplate="%{y:.1f} %<extra>%{fullData.name}</extra>")
-                st.plotly_chart(style_fig(fig, 440), use_container_width=True)
+                st.plotly_chart(style_fig(fig, 440), width="stretch")
             explain(
                 "On compare les heures de grande écoute (prime time, ~20h-23h) au reste de la journée. "
                 "Si la courbe Prime time est <b>en dessous</b> de l'autre, ça veut dire qu'il y a "
@@ -689,7 +687,7 @@ elif page == "cross":
                              labels={col: f"Part du temps consacré à {rubrique}",
                                      "women_expression_rate": "% femmes"})
             fig.update_layout(title=f"« {rubrique} » vs expression des femmes")
-            st.plotly_chart(style_fig(fig, 500), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 500), width="stretch")
         explain(
             "Chaque <b>point</b> représente une chaîne sur une année. "
             "Plus on va à droite, plus la chaîne consacre du temps à la rubrique sélectionnée. "
@@ -728,7 +726,7 @@ elif page == "cross":
             fig.update_layout(title="Corrélation de chaque rubrique avec la parité",
                               coloraxis_colorbar=dict(thickness=12, len=0.7),
                               yaxis=dict(showticklabels=False))
-            st.plotly_chart(style_fig(fig, 220), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 220), width="stretch")
             explain(
                 "Chaque case = un lien entre une rubrique et la parité H/F. "
                 "<b>Rouge foncé</b> = quand la chaîne parle beaucoup de ce sujet, elle donne plus la parole aux femmes. "
@@ -740,7 +738,7 @@ elif page == "cross":
                             color_continuous_midpoint=0, aspect="auto", text_auto=".2f")
             fig.update_layout(title="Matrice complète de corrélation (Pearson)",
                               coloraxis_colorbar=dict(thickness=12, len=0.7))
-            st.plotly_chart(style_fig(fig, 620), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 620), width="stretch")
             explain(
                 "Tableau croisé : chaque ligne et chaque colonne est une rubrique (ou la parité). "
                 "Une case rouge dit que <b>les deux vont ensemble</b> ; bleue qu'elles <b>s'opposent</b> ; "
@@ -756,7 +754,7 @@ elif page == "cross":
                           hover_data={"p_value": ":.3f", "significatif_5pct": False},
                           labels={"pearson_r": "Corrélation Pearson", "rubrique": ""})
             fig2.update_layout(showlegend=False)
-            st.plotly_chart(style_fig(fig2, 420), use_container_width=True)
+            st.plotly_chart(style_fig(fig2, 420), width="stretch")
 
 
 # ─────────────────────────────────────────────
@@ -821,7 +819,7 @@ elif page == "advanced":
                 ))
 
             fig.update_layout(title="Projection ACP : points = (chaîne, année), lignes = trajectoires")
-            st.plotly_chart(style_fig(fig, 560), use_container_width=True)
+            st.plotly_chart(style_fig(fig, 560), width="stretch")
             explain(
                 "On a demandé à l'ordinateur de <b>regrouper les chaînes par profil thématique</b> "
                 "(celles qui parlent des mêmes sujets se ressemblent). Trois familles ressortent, "
@@ -844,7 +842,7 @@ elif page == "advanced":
             fig_c.update_layout(title="Part du temps par rubrique et par cluster",
                                 yaxis_tickformat=".0%")
             fig_c.update_traces(hovertemplate="%{x}<br>%{y:.1%}<extra>%{fullData.name}</extra>")
-            st.plotly_chart(style_fig(fig_c, 420), use_container_width=True)
+            st.plotly_chart(style_fig(fig_c, 420), width="stretch")
 
     # ─── Ruptures
     with t_rupt:
@@ -899,7 +897,7 @@ elif page == "advanced":
             fig.update_layout(title=f"Série mensuelle « {rub} » : {len(ruptures_rub)} ruptures",
                               yaxis_title="Heures par mois", xaxis_title="")
             with chart_container(serie[["mois", "heures"]]):
-                st.plotly_chart(style_fig(fig, 480), use_container_width=True)
+                st.plotly_chart(style_fig(fig, 480), width="stretch")
             explain(
                 "La <b>courbe bleue</b> montre combien d'heures les JT ont consacré à ce sujet, mois par mois. "
                 "Un algorithme détecte automatiquement les <b>moments où l'intensité change durablement</b> "
@@ -910,13 +908,13 @@ elif page == "advanced":
             with st.expander(f"📋 Dates des ruptures détectées ({rub})"):
                 rdf = rp_f[rp_f["rubrique"] == rub][["date_rupture"]].copy()
                 rdf["date_rupture"] = rdf["date_rupture"].dt.strftime("%Y-%m")
-                st.dataframe(rdf, hide_index=True, use_container_width=True)
+                st.dataframe(rdf, hide_index=True, width="stretch")
 
 
 # ─────────────────────────────────────────────
 # FOOTER STICKY
 # ─────────────────────────────────────────────
-with bottom():
+with st.bottom:
     st.caption(
         "Projet M1 Big Data & IA — 2025-2026  ·  "
         "Données INA  ·  Construit avec Streamlit, Plotly, scikit-learn, ruptures, pandera"
