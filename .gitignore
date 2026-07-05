@@ -1,0 +1,38 @@
+# ─── Bronze ignoré : redondant avec data/raw/ ───
+data/bronze/
+
+# ─── Fichiers > 100 MB (limite GitHub) ───
+# À récupérer manuellement depuis la source INA / CSA, puis pipeline.py regénère
+data/raw/20190308-stats.csv
+data/silver/stats.csv
+
+# Silver + Gold SONT versionnés (utiles pour l'équipe Django/Chart.js,
+# évite de devoir relancer le pipeline à chaque clone)
+
+# ─── Logs ───
+logs/*.log
+*.log
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ─── IDE / OS ───
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Claude Code ───
+.claude/
+
+# ─── Archives volumineuses ───
+archive/*.zip

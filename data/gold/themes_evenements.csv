@@ -1,0 +1,32 @@
+evenement,date_debut,date_fin,rubrique,duree_moy_avant,duree_moy_pendant,delta_pct
+Attentats 11 septembre,2001-09-11,2001-10-31,International,922.37,4653.94,404.57
+Attentats 11 septembre,2001-09-11,2001-10-31,Société,1320.1,1109.88,-15.92
+Second tour Le Pen (présidentielle),2002-04-21,2002-05-05,Politique France,1446.9,2991.8,106.77
+Invasion Irak,2003-03-20,2003-05-01,International,2796.87,5059.26,80.89
+Émeutes banlieues françaises,2005-10-27,2005-11-17,Politique France,250.28,267.61,6.92
+Émeutes banlieues françaises,2005-10-27,2005-11-17,Société,1602.67,2987.14,86.39
+Élection présidentielle Sarkozy,2007-04-22,2007-05-06,Politique France,1227.37,2104.73,71.48
+Crise financière mondiale,2008-09-15,2008-12-31,Economie,458.53,1182.17,157.81
+Crise financière mondiale,2008-09-15,2008-12-31,International,1563.47,991.29,-36.6
+Grippe H1N1,2009-04-01,2009-06-30,Santé,328.37,538.25,63.92
+Catastrophe Fukushima,2011-03-11,2011-04-30,Catastrophes,268.71,673.07,150.48
+Catastrophe Fukushima,2011-03-11,2011-04-30,International,1973.8,1708.08,-13.46
+Élection présidentielle Hollande,2012-04-22,2012-05-06,Politique France,1459.07,2725.27,86.78
+Attentats Charlie Hebdo,2015-01-07,2015-01-25,Faits divers,286.93,97.0,-66.19
+Attentats Charlie Hebdo,2015-01-07,2015-01-25,International,916.1,1047.74,14.37
+Attentats Charlie Hebdo,2015-01-07,2015-01-25,Société,1802.83,931.63,-48.32
+Attentats 13 novembre,2015-11-13,2015-12-15,Faits divers,314.46,152.39,-51.54
+Attentats 13 novembre,2015-11-13,2015-12-15,International,1043.5,1486.67,42.47
+Attentats 13 novembre,2015-11-13,2015-12-15,Politique France,543.15,3524.73,548.94
+Attentat Nice,2016-07-14,2016-08-15,Faits divers,170.91,268.78,57.27
+Attentat Nice,2016-07-14,2016-08-15,International,1635.93,959.19,-41.37
+Élection présidentielle Macron,2017-04-23,2017-05-07,Politique France,2086.6,4066.6,94.89
+Mouvement Gilets Jaunes,2018-11-17,2019-03-31,Politique France,339.82,935.65,175.33
+Mouvement Gilets Jaunes,2018-11-17,2019-03-31,Société,1274.07,1715.79,34.67
+Incendie Notre-Dame,2019-04-15,2019-05-15,Culture-loisirs,591.87,766.23,29.46
+Incendie Notre-Dame,2019-04-15,2019-05-15,Société,1427.21,1526.13,6.93
+Premier confinement COVID,2020-03-17,2020-05-11,Economie,927.53,1023.09,10.3
+Premier confinement COVID,2020-03-17,2020-05-11,Santé,3079.5,7322.46,137.78
+Premier confinement COVID,2020-03-17,2020-05-11,Société,764.37,415.61,-45.63
+Second confinement COVID,2020-10-30,2020-12-15,Economie,706.23,1291.32,82.85
+Second confinement COVID,2020-10-30,2020-12-15,Santé,2373.23,2161.45,-8.92

@@ -1,0 +1,4 @@
+cluster,part_catastrophes,part_culture_loisirs,part_economie,part_education,part_environnement,part_faits_divers,part_histoire_hommages,part_international,part_justice,part_politique_france,part_sante,part_sciences_et_techniques,part_societe,part_sport,nb_obs,chaines_principales
+0,0.068,0.105,0.097,0.027,0.041,0.058,0.02,0.103,0.056,0.102,0.044,0.02,0.192,0.068,22,"M6, TF1, France 3"
+1,0.018,0.158,0.068,0.007,0.036,0.01,0.027,0.436,0.037,0.047,0.016,0.016,0.117,0.006,10,Arte
+2,0.067,0.076,0.136,0.023,0.057,0.037,0.027,0.102,0.037,0.138,0.035,0.023,0.191,0.049,18,"France 2, France 3, TF1"

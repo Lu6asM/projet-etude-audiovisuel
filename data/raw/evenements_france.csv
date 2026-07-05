@@ -1,0 +1,18 @@
+date_debut,date_fin,evenement,categorie,impact_attendu
+2001-09-11,2001-10-31,Attentats 11 septembre,International,International+Société
+2002-04-21,2002-05-05,Second tour Le Pen (présidentielle),Politique France,Politique France
+2003-03-20,2003-05-01,Invasion Irak,International,International
+2005-10-27,2005-11-17,Émeutes banlieues françaises,Société,Société+Politique France
+2007-04-22,2007-05-06,Élection présidentielle Sarkozy,Politique France,Politique France
+2008-09-15,2008-12-31,Crise financière mondiale,Economie,Economie+International
+2009-04-01,2009-06-30,Grippe H1N1,Santé,Santé
+2011-03-11,2011-04-30,Catastrophe Fukushima,Catastrophes,Catastrophes+International
+2012-04-22,2012-05-06,Élection présidentielle Hollande,Politique France,Politique France
+2015-01-07,2015-01-25,Attentats Charlie Hebdo,Faits divers,Faits divers+Société+International
+2015-11-13,2015-12-15,Attentats 13 novembre,Faits divers,Faits divers+International+Politique France
+2016-07-14,2016-08-15,Attentat Nice,Faits divers,Faits divers+International
+2017-04-23,2017-05-07,Élection présidentielle Macron,Politique France,Politique France
+2018-11-17,2019-03-31,Mouvement Gilets Jaunes,Société,Société+Politique France
+2019-04-15,2019-05-15,Incendie Notre-Dame,Culture-loisirs,Culture-loisirs+Société
+2020-03-17,2020-05-11,Premier confinement COVID,Santé,Santé+Société+Economie
+2020-10-30,2020-12-15,Second confinement COVID,Santé,Santé+Economie

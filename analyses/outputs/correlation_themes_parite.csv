@@ -1,0 +1,15 @@
+rubrique,pearson_r,p_value,significatif_5pct
+faits_divers,0.577,0.0,True
+sciences_et_techniques,0.572,0.0,True
+societe,0.548,0.0,True
+sante,0.458,0.0008,True
+education,0.453,0.001,True
+catastrophes,0.379,0.0066,True
+sport,0.366,0.009,True
+politique_france,0.288,0.0424,True
+economie,0.25,0.0799,False
+environnement,0.109,0.45,False
+justice,-0.007,0.9623,False
+histoire_hommages,-0.187,0.1937,False
+culture_loisirs,-0.191,0.1845,False
+international,-0.6,0.0,True
