@@ -24,14 +24,6 @@ projet-audiovisuel/
 ├── database/
 │   ├── schema_postgresql.sql         # Schéma BDD complet
 │   └── django_models.py              # Modèles Django ORM
-├── backend/                          # Django application
-│   ├── manage.py
-│   ├── audiovisuel/                  # App principale
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── serializers.py            # Django REST
-│   │   └── urls.py
-│   └── config/                       # Settings Django
 ├── frontend/                         # Interface utilisateur
 │   ├── src/
 │   └── package.json
