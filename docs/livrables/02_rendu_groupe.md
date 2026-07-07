@@ -316,36 +316,35 @@ Sortie type d'une exécution réussie : **12 lignes ✓** consécutives dans `lo
 
 ## 4.6 Backend — PostgreSQL + Django
 
-### 4.6.1 Schéma
+### 4.6.1 Architecture
 
-5 tables normalisées 3NF :
+Le backend repose sur une base PostgreSQL normalisée en 3NF composée de 5 tables :
 
-```
-channels (5)     themes (14)
-   |                |
-   +----> daily_stats <----+
-         (268 K lignes)
+- `channels`
+- `themes`
+- `daily_stats`
+- `yearly_gender`
+- `hourly_stats`
 
-yearly_gender (701)    hourly_stats (11 K)
-```
+Le schéma inclut des contraintes d'intégrité, des index optimisés et des structures adaptées aux requêtes analytiques.
 
-Voir `06_diagrammes.md` § 3 pour le diagramme ER.
+Voir `06_diagrammes.md` §3 pour le diagramme ER.
 
 ### 4.6.2 Implémentation
 
-- **`backend/schema_postgresql.sql`** — DDL complet + index + contraintes
-- **`backend/load_gold_to_postgres.py`** — chargement des tables Gold dans PostgreSQL (batch 1000 lignes)
-- **`backend/django_models.py`** — modèles ORM avec validators, properties calculées, managers
-- **API REST** — endpoints `/api/channels/`, `/api/themes/`, `/api/daily-stats/`, `/api/analytics/` (en cours)
+- `schema_postgresql.sql` : définition de la base, contraintes et index
+- `load_gold_to_postgres.py` : chargement des données Gold en batch
+- `django_models.py` : modèles ORM Django avec logique métier associée
+- API REST Django : endpoints `/api/channels/`, `/api/themes/`, `/api/daily-stats/` et `/api/analytics/` (en cours)
 
-### 4.6.3 Statut
+### 4.6.3 Statut et perspectives
 
-Le backend est **livré comme module optionnel**. Le MVP livré (dashboard Streamlit) consomme directement les tables Gold en CSV, sans dépendance à PostgreSQL. Le backend permettra à terme :
+Le backend est actuellement un module optionnel. Le MVP livré utilise directement les fichiers CSV Gold via Streamlit.
 
-- d'exposer les données via API à des clients tiers
-- de gérer des utilisateurs et des permissions
-- de migrer vers un frontend React/Chart.js si l'évolution du projet l'exige
-
+À terme, cette couche permettra :
+- d'exposer les données via une API REST,
+- de gérer utilisateurs et permissions,
+- d'intégrer des frontends externes (React, Chart.js, applications mobiles).
 ## 4.7 Qualité, tests, reproductibilité
 
 - **Validation pandera** sur les 12 tables Silver + Gold (6 Silver + 6 Gold) — mode warning par défaut, mode bloquant activable via la variable d'environnement `PIPELINE_STRICT=1` pour la CI
