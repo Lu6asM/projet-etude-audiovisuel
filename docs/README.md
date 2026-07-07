@@ -1,5 +1,7 @@
 # Projet Audiovisuel INA - Open Data University
 
+Lien du git: https://github.com/Lu6asM/projet-etude-audiovisuel.git
+
 ## 📊 Vue d'ensemble
 
 Analyse de l'évolution des thèmes diffusés à la télévision et à la radio française (2000-2020).
