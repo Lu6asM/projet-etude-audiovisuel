@@ -120,11 +120,6 @@ Projet d'étude/
 ├── dashboard/
 │   ├── app.py                 Streamlit 5 pages
 │   └── .streamlit/config.toml Thème
-├── backend/
-│   ├── django_models.py
-│   ├── schema_postgresql.sql
-│   ├── migration_script.py
-│   └── load_gold_to_postgres.py
 ├── docs/
 │   └── livrables/             Rendus Sup de Vinci
 └── logs/                      pipeline.log
