@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Zoom analytique et horaire{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Axe 3 : Analyse Horaire et Sectorielle</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Taux de présence féminine par Heure</h3><canvas id="c1" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Les médias et leur taux de parole féminin</h3><canvas id="c2" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Volume global Public vs Privé</h3><canvas id="c3" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Inégalité Journée vs Émissions Nocturnes</h3><canvas id="c4" class="h-64"></canvas></div>
+</div>
+<script>
+    fetch("{% url 'api_parole_zoom' %}").then(r => r.json()).then(data => {
+        new Chart(document.getElementById('c1'), { type: 'line', data: { labels: data.g1.labels, datasets: [{ label: '% Femmes', data: data.g1.taux, borderColor: '#a855f7', fill: true, backgroundColor: 'rgba(168, 85, 247, 0.1)' }] } });
+        new Chart(document.getElementById('c2'), { type: 'bar', data: { labels: data.g2.labels, datasets: [{ label: '% Femmes', data: data.g2.taux, backgroundColor: '#10b981' }] } });
+        new Chart(document.getElementById('c3'), { type: 'doughnut', data: { labels: data.g3.labels, datasets: [{ data: data.g3.femmes, backgroundColor: ['#6366f1', '#f43f5e'] }] } });
+        new Chart(document.getElementById('c4'), { type: 'polarArea', data: { labels: data.g4.labels, datasets: [{ data: data.g4.taux_femmes, backgroundColor: ['#1e3a8a', '#f59e0b'] }] } });
+    });
+</script>
+{% endblock %}

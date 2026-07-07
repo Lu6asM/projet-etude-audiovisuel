@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Analyse INA/CSA{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-indigo-700 p-4 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="font-bold text-xl">Analyse INA / CSA</span>
+            <div class="space-x-4">
+                <a href="{% url 'page_themes_jt' %}" class="hover:underline px-3 py-2 rounded transition">1. Baromètre JT</a>
+                <a href="{% url 'page_parole_global' %}" class="hover:underline px-3 py-2 rounded transition">2. Parole (Global)</a>
+                <a href="{% url 'page_parole_zoom' %}" class="hover:underline px-3 py-2 rounded transition">3. Parole (Zoom Horaire)</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse INA / CSA</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col justify-center items-center">
+
+    <div class="max-w-4xl text-center px-6">
+        <h1 class="text-4xl font-extrabold text-indigo-900 mb-4">
+            Évolution des Thèmes et Parole des Femmes dans les Médias
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Projet d'étude basé sur les données ouvertes de l'INA et du CSA. Explorez les dynamiques médiatiques à travers nos trois axes d'analyse interactifs.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+
+            <a href="{% url 'page_themes_jt' %}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition border border-gray-100 group">
+                <div class="text-indigo-600 font-bold mb-2 text-sm uppercase tracking-wider">Axe 1</div>
+                <h3 class="text-xl font-bold text-gray-800 group-hover:text-indigo-600 mb-2">Baromètre des JT</h3>
+                <p class="text-gray-500 text-sm">Analyse historique de l'évolution des thématiques diffusées dans les journaux télévisés.</p>
+            </a>
+
+            <a href="{% url 'page_parole_global' %}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition border border-gray-100 group">
+                <div class="text-pink-600 font-bold mb-2 text-sm uppercase tracking-wider">Axe 2</div>
+                <h3 class="text-xl font-bold text-gray-800 group-hover:text-pink-600 mb-2">Temps de Parole Global</h3>
+                <p class="text-gray-500 text-sm">Mesure macro de la parité Hommes/Femmes à la télévision et à la radio au fil des ans.</p>
+            </a>
+
+            <a href="{% url 'page_parole_zoom' %}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition border border-gray-100 group">
+                <div class="text-purple-600 font-bold mb-2 text-sm uppercase tracking-wider">Axe 3</div>
+                <h3 class="text-xl font-bold text-gray-800 group-hover:text-purple-600 mb-2">Zoom Analytique</h3>
+                <p class="text-gray-500 text-sm">Analyse sectorielle fine : impact des tranches horaires et des types de chaînes.</p>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>

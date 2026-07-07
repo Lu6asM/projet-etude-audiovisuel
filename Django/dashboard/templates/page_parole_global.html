@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Temps de parole Global & Prévisions{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Axe 2 : Évolution Macro du Temps de Parole & IA</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Historique Annuel (en heures)</h3><canvas id="c1" class="h-64"></canvas></div>
+
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Comparatif Radio vs TV</h3><canvas id="c2" class="h-64"></canvas></div>
+
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Musique vs Parole globale</h3><canvas id="c3" class="h-64"></canvas></div>
+
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Taux d'expression des femmes (%)</h3><canvas id="c4" class="h-64"></canvas></div>
+
+    <div class="bg-white p-4 rounded-lg shadow col-span-1 md:col-span-2">
+        <h3 class="font-bold mb-2 text-indigo-900 text-lg">Prévisions IA : Évolution du taux de parole des femmes (Random Forest)</h3>
+        <div style="position: relative; height: 350px;">
+            <canvas id="predictionChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    fetch("{% url 'api_parole_global' %}").then(r => r.json()).then(data => {
+        new Chart(document.getElementById('c1'), { type: 'bar', data: { labels: data.g1.labels, datasets: [{ label: 'Femmes', data: data.g1.femmes, backgroundColor: '#ec4899' }, { label: 'Hommes', data: data.g1.hommes, backgroundColor: '#3b82f6' }] }, options: { scales: { x: { stacked: true }, y: { stacked: true } } } });
+        new Chart(document.getElementById('c2'), { type: 'bar', data: { labels: data.g2.labels, datasets: [{ label: 'Femmes', data: data.g2.femmes, backgroundColor: '#ec4899' }, { label: 'Hommes', data: data.g2.hommes, backgroundColor: '#3b82f6' }] } });
+        new Chart(document.getElementById('c3'), { type: 'line', data: { labels: data.g3.labels, datasets: [{ label: 'Musique', data: data.g3.musique, borderColor: '#eab308' }, { label: 'Parole', data: data.g3.parole, borderColor: '#6b7280' }] } });
+        new Chart(document.getElementById('c4'), { type: 'line', data: { labels: data.g4.labels, datasets: [{ label: '% Femmes', data: data.g4.taux, borderColor: '#ec4899', borderDash: [5, 5] }] }, options: { scales: { y: { min: 0, max: 100 } } } });
+    });
+
+    fetch("{% url 'api_predictions_parole' %}").then(response => response.json()).then(data => {
+        const ctx = document.getElementById('predictionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [
+                    {
+                        label: 'Données Réelles (INA/CSA)',
+                        data: data.historique,
+                        borderColor: '#db2777',
+                        backgroundColor: 'transparent',
+                        borderWidth: 3,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Prévisions (Random Forest)',
+                        data: data.predictions,
+                        borderColor: '#9333ea',
+                        backgroundColor: 'transparent',
+                        borderDash: [6, 6], // Style en pointillés pour signifier le futur prédit
+                        borderWidth: 3,
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        min: 0,
+
+                        title: { display: true, text: 'Taux d’expression (%)' }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

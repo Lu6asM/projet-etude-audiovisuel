@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Baromètre des thèmes JT{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Axe 1 : Évolution des thèmes dans les JT</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Top 5 Thèmes historiques</h3><canvas id="c1" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Focus Thématique : Faits Divers</h3><canvas id="c2" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Durée moyenne d'un sujet (sec)</h3><canvas id="c3" class="h-64"></canvas></div>
+    <div class="bg-white p-4 rounded-lg shadow"><h3 class="font-bold mb-2">Répartition Public vs Privé</h3><canvas id="c4" class="h-64"></canvas></div>
+</div>
+<script>
+    fetch("{% url 'api_themes_jt' %}").then(r => r.json()).then(data => {
+        new Chart(document.getElementById('c1'), { type: 'bar', data: { labels: data.g1.labels, datasets: [{ label: 'Sujets', data: data.g1.values, backgroundColor: '#4f46e5' }] } });
+        new Chart(document.getElementById('c2'), { type: 'line', data: { labels: data.g2.labels, datasets: [{ label: 'Volume', data: data.g2.values, borderColor: '#dc2626', fill: false }] } });
+        new Chart(document.getElementById('c3'), { type: 'bar', data: { labels: data.g3.labels, datasets: [{ label: 'Secondes', data: data.g3.values, backgroundColor: '#059669' }] }, options: { indexAxis: 'y' } });
+        new Chart(document.getElementById('c4'), { type: 'pie', data: { labels: data.g4.labels, datasets: [{ data: data.g4.values, backgroundColor: ['#3b82f6', '#10b981'] }] } });
+    });
+</script>
+{% endblock %}
