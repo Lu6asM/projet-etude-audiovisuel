@@ -14,7 +14,6 @@ Ce dossier rassemble les livrables à rendre conformément au **cadre pédagogiq
 | `03_rendu_lucas.md` | Document technique final — rendu individuel Lucas | Source markdown, à convertir en PDF |
 | `04_rendu_baptiste.md` | Document technique final — rendu individuel Baptiste | Source markdown, à convertir en PDF |
 | `05_rendu_gerard.md` | Document technique final — rendu individuel Gérard | Source markdown, à convertir en PDF |
-| `01_script_video.md` | Script de la vidéo MVP 15-20 min | Source à enregistrer |
 
 ## Annexes & supports
 
@@ -39,21 +38,3 @@ Le cadre péda impose une nomenclature stricte des fichiers livrés.
 - **Zip groupe** : `PE_2526_M1BDIA_NomLucas_NomBaptiste_NomGerard.zip`
 - **PDF groupe** (dans le zip) : `PE-2526_M1BDIA_NomLucas_NomBaptiste_NomGerard.pdf`
 - **PDF individuels** (dans le zip) : `PE-2526_M1BDIA_NomPrenomEtudiant.pdf`
-
-## Conversion markdown → PDF
-
-Une fois les markdowns relus et complétés :
-
-```bash
-# Option 1 : Pandoc (recommandé)
-pandoc 02_rendu_groupe.md -o PE-2526_M1BDIA_NomLucas_NomBaptiste_NomGerard.pdf \
-    --pdf-engine=xelatex --toc --variable=geometry:margin=2cm
-
-# Option 2 : VS Code "Markdown PDF" extension (ctrl+shift+P → "Markdown PDF: Export to PDF")
-
-# Option 3 : impression depuis n'importe quel viewer markdown
-```
-
-## TODOs à compléter avant rendu
-
-Cherche `[TODO …]` dans tous les fichiers. Ce sont les zones où il manque des infos que je ne pouvais pas inventer (noms de famille exacts, dates précises, captures d'écran, etc.).
