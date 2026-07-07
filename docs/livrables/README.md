@@ -1,5 +1,9 @@
 # Livrables — Projet d'études M1 Big Data & IA
 
+## Lien de la vidéo sur youtube
+https://youtu.be/hastKg_71io
+
+
 Ce dossier rassemble les livrables à rendre conformément au **cadre pédagogique Sup de Vinci 2025-2026**.
 
 ## Livrables certifiants (obligatoires)
