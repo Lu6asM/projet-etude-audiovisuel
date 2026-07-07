@@ -1,6 +1,7 @@
 # Projet Audiovisuel INA - Open Data University
 
 Lien du git: https://github.com/Lu6asM/projet-etude-audiovisuel.git
+Lien de la vidéo: https://youtu.be/hastKg_71io 
 
 ## 📊 Vue d'ensemble
 
