@@ -5,7 +5,7 @@
 Analyse de l'évolution des thèmes diffusés à la télévision et à la radio française (2000-2020).
 
 **Équipe**: Groupe 5 AUDIOVISUEL  
-**Membres**: D'OLIVEIRA Gérard, MEIRELES Lucas, Baptiste B GARIE  
+**Membres**: D'OLIVEIRA Gérard, MEIRELES Lucas, Baptiste BÉGARIE  
 **Rendu final**: 7 Juillet 2026  
 
 ---
