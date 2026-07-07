@@ -84,47 +84,73 @@ flowchart TB
 
 ```mermaid
 erDiagram
-    CHANNELS ||--o{ DAILY_STATS : "diffuse"
-    THEMES ||--o{ DAILY_STATS : "catégorise"
-    CHANNELS ||--o{ YEARLY_GENDER : "mesure parité"
-    CHANNELS ||--o{ HOURLY_STATS : "par tranche horaire"
 
-    CHANNELS {
-        int id PK
-        string name UK
+    DIM_MEDIAS ||--o{ FAIT_THEMES_DIFFUSION : "concerne"
+    DIM_TEMPS ||--o{ FAIT_THEMES_DIFFUSION : "date"
+    DIM_THEMES_GENRES ||--o{ FAIT_THEMES_DIFFUSION : "catégorise"
+
+    DIM_MEDIAS ||--o{ FAIT_PAROLE_ANALYSE_HORAIRE : "mesure"
+    DIM_TEMPS ||--o{ FAIT_PAROLE_ANALYSE_HORAIRE : "date"
+
+    DIM_THEMES_GENRES ||--o{ FAIT_PAROLE_ANNUELLE_GENRE : "catégorise"
+
+
+    DIM_MEDIAS {
+        int media_id PK
+        string channel_name UK
         string media_type
-        bool is_public
+        boolean is_public_channel
+        string media_group
     }
-    THEMES {
-        int id PK
-        string label UK
-        string category
+
+    DIM_TEMPS {
+        int date_id PK
+        date date_pure UK
+        int annee
+        int mois
+        int jour
+        string jour_semaine
+        string zone_vacances_scolaires
+        boolean est_jour_ferie
     }
-    DAILY_STATS {
-        int id PK
-        date jour
-        int channel_id FK
-        int theme_id FK
-        int nb_subjects
-        int duration_sec
+
+    DIM_THEMES_GENRES {
+        int categorie_id PK
+        string nom_categorie UK
+        string type_categorie
     }
-    YEARLY_GENDER {
-        int id PK
-        int year
-        int channel_id FK
-        float women_expression_rate
-        float speech_rate
+
+
+    FAIT_THEMES_DIFFUSION {
+        int fait_theme_id PK
+        int date_id FK
+        int media_id FK
+        int categorie_id FK
+        int nb_sujets
+        int duree_sujets_secondes
     }
-    HOURLY_STATS {
-        int id PK
-        int year
-        int channel_id FK
-        int hour
-        float male_duration
-        float female_duration
+
+    FAIT_PAROLE_ANALYSE_HORAIRE {
+        int fait_parole_id PK
+        int date_id FK
+        int media_id FK
+        int heure_diffusion
+        int male_duration
+        int female_duration
+        int music_duration
+    }
+
+    FAIT_PAROLE_ANNUELLE_GENRE {
+        int fait_synthese_id PK
+        int annee
+        int categorie_id FK
+        int nb_declarations
+        float total_declarations_duration
+        float women_speech_duration
+        float men_speech_duration
+        float other_duration
     }
 ```
-
 ---
 
 ## 4. Organisation de l'équipe
