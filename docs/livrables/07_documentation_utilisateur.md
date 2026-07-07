@@ -263,44 +263,7 @@ Algorithme **PELT** sur les séries mensuelles de chaque rubrique majeure.
 
 # 8. Backend PostgreSQL (optionnel)
 
-## 8.1 Création de la base
-
-```bash
-createdb audiovisuel_ina
-psql -d audiovisuel_ina -f backend/schema_postgresql.sql
-```
-
-## 8.2 Chargement des données Gold
-
-```bash
-make pipeline                              # si pas déjà fait
-python backend/load_gold_to_postgres.py
-```
-
-## 8.3 Vérification
-
-```sql
-SELECT COUNT(*) FROM daily_stats;     -- attendu : 268424
-SELECT COUNT(*) FROM channels;         -- 5
-SELECT COUNT(*) FROM themes;           -- 14
-SELECT COUNT(*) FROM yearly_gender;    -- ~700
-```
-
-## 8.4 API Django (en cours)
-
-```bash
-cd backend
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver 0.0.0.0:8000
-```
-
-Endpoints prévus :
-
-- `GET /api/channels/`
-- `GET /api/themes/`
-- `GET /api/daily-stats/?channel=tf1&year=2020`
-- `GET /api/analytics/top-themes/?year=2020`
+La documentation Backend (Postgresql + Airflow + django) se trouve dans le dossier Projet Django & Airflow (https://github.com/Lu6asM/projet-etude-audiovisuel/tree/main/docs/Projet%20Django%20%26%20Airflow)
 
 ---
 
